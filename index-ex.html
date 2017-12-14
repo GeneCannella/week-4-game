@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>simple crystal game</title>
+    <style type="text/css">
+    .crystal-image {
+        width: 200px;
+        height: 200px;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+    <!-- Note that this div is now empty. We will fill it dynamically -->
+    <div id="crystals">
+    </div>
+    <!--Requirements-->
+    <!-- ===========================================
+Here's how the app works:
+
+There will be four crystals displayed as buttons on the page.
+
+The player will be shown a random number at the start of the game.
+
+When the player clicks on a crystal, it will add a specific amount of points to the player's total score.
+
+Your game will hide this amount until the player clicks a crystal.
+When they do click one, update the player's score counter.
+The player wins if their total score matches the random number from the beginning of the game.
+
+The player loses if their score goes above the random number.
+
+The game restarts whenever the player wins or loses.
+
+When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
+The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game.
+
+Option 1 Game design notes
+The random number shown at the start of the game should be between 19 - 120.
+
+Each crystal should have a random hidden value between 1 - 12.
+
+Psuedo Code
+1. initialize game state
+1.1. Get random number for target, four crystals
+1.2. Dynamically create 4 image elements for crystals
+1.2.1. while creating img elements, style them and give them data attributes for the number values
+1.3. add the img elements to the page
+
+2. Declare onclick function that fire for any crystal but gets data value for clicked crystal
+2.1 Add crystal data val to playerSum
+
+================================================ -->
+    <!-- JAVASCRIPT  -->
+    <!-- ========================================= -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    var targetNumber, playerSum, crysVals;
+
+    function initGame() {
+        playerSum = 0; //set global variable holding player's summed crystals values to 0
+        targetNumber = (19 + Math.floor(Math.random() * 102)); //global variable, number to guess 19-120, inclusive
+        crysVals = []; //create empty array to hold 4 random values for crystals
+        
+        for (var i = 0; i < 4; i++) {  //loop to initialize 4 image elements with styling, img src, and data-attr to hold random number
+ 
+            // for each crystal, create an <img> element, get a reference for it
+            var imageCrystal = $("<img>");
+            
+            // For each <img> element, assign the class ".crystal-image".
+            // This is so that we will be able to style all the images together
+            imageCrystal.addClass("crystal-image");
+            
+            // Each <img> element will be given a src link to the crystal image
+            imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
+
+            //each element value will be between 1 and 12, inclusive
+            crysVals[i] = (1 + Math.floor(Math.random() * 12)); 
+
+            // Each <img> element will be given a data attribute called data-crystalValue.
+            // This data attribute holds the random number for this crystal
+            imageCrystal.attr("data-crystalvalue", crysVals[i]);
+
+            // Add each <img> element to the div with the id "#crystals"
+            $("#crystals").append(imageCrystal);
+
+
+        }
+        
+        $("#number-to-guess").text(targetNumber); //jQuery selects element w/id number-to-guess, sets its text to targetNumber
+
+
+
+        return;
+    }
+    
+    initGame();
+
+  
+
+
+
+
+    // This time, our click event applies to every single crystal on the page. Not just one.
+    $(".crystal-image").on("click", function() {
+
+        // Determining the crystal's value requires us to extract the value from the data attribute.
+        // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
+        // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
+        // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
+
+        
+        //get the random value of the crystal that was actually clicked
+        //note that "this" is returned as a simple HTML element, not a jQuery object, so must use "$()"
+        var crystalValue = ($(this).attr("data-crystalvalue")); //I think I can get rid of the outer parens
+        
+        //the value returned by the .attr() method is a string, so convert to an int
+        crystalValue = parseInt(crystalValue);
+
+        // Add the crystalValue to the running sum of the player's guesses, "playerSum", which is a global variable.
+        playerSum += crystalValue;
+
+        // All of the same game win-lose logic applies. So the rest remains unchanged.
+        alert("New score: " + playerSum);
+
+        if (playerSum === targetNumber) {
+            alert("You win!");
+        } else if (playerSum >= targetNumber) {
+            alert("You lose!!");
+        }
+
+    });
+    </script>
+</body>
+
+</html>
