@@ -65,11 +65,6 @@
             wrappedImages = $(".crystal-image");
             console.log("wrappedImages = " + wrappedImages);
 
-            // This click event will fire if any crystal is clicked
-            // It will return the simple <img> element in "this", but not as a jQuery object
-            wrappedImages.on("click", namedClickFunction); //closes the .on("click") function
-            //$(".crystal-image").on("click", function() {
-
 
             //initialize the DISPLAY of game state variables
             updateDisplay();
@@ -86,9 +81,14 @@
             initGame();
         }
 
-        
-        function namedClickFunction() {
+        //end global function declarations =============================
 
+        initSession();
+
+        // This click event will fire if any crystal is clicked
+        // It will return the simple <img> element in "this", but not as a jQuery object
+        wrappedImages.on("click", function() {
+            //$(".crystal-image").on("click", function() {
             console.log("recognized click");
             // Determining the crystal's value requires us to extract the value from the data attribute.
             // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
@@ -111,13 +111,11 @@
 
             if (playerSum === targetNumber) {
                 alert("You win!");
-                var outcomeText = "You Win!";
                 winCount++;
                 gameOver = true;
 
             } else if (playerSum >= targetNumber) {
                 alert("You lose!!");
-                var outcomeText = "You Lose!";
                 lossCount++;
                 gameOver = true;
             } else {
@@ -133,21 +131,11 @@
                 //some code here to ask for use indication they want to play again
                 //let's add a div that says "You Win" or You Lose! and "Click Here To Play Again"
                 console.log("gameOver = " + gameOver);
-                $("#win-lose").html(outcomeText);
                 initGame();
             }
-        } //this closes the namedClickFunction
 
 
-        //end global function declarations =============================
-
-        initSession();
-
-
-
-
-
-
+        }); //closes the .on("click") function
 
 
     }); //closes the document ready function
