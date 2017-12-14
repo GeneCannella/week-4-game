@@ -1,6 +1,6 @@
     $(document).ready(function() {
 
-        var gameOver, targetNumber, playerSum, crysVals, winCount, lossCount, wrappedImages;
+        var gameOver, outcomeText, targetNumber, playerSum, crysVals, winCount, lossCount, wrappedImages;
 
         // global function declarations =============================
 
@@ -16,10 +16,12 @@
             $("#running-total").text(playerSum); // jQuery selects element w/id "#running-total", sets its text to playerSum
             $("#wins-count").text(winCount);
             $("#losses-count").text(lossCount);
+            $("#win-lose").html(outcomeText);
         }
 
         function initGame() {
             gameOver = false;
+            outcomeText = '';
             playerSum = 0; //set global variable holding player's summed crystals values to 0
             targetNumber = (19 + Math.floor(Math.random() * 102)); //global variable, number to guess 19-120, inclusive
 
@@ -111,17 +113,18 @@
 
             if (playerSum === targetNumber) {
                 alert("You win!");
-                var outcomeText = "You Win!";
+                outcomeText = "You Win!";
                 winCount++;
                 gameOver = true;
 
             } else if (playerSum >= targetNumber) {
                 alert("You lose!!");
-                var outcomeText = "You Lose!";
+                outcomeText = "You Lose!";
                 lossCount++;
                 gameOver = true;
             } else {
                 gameOver = false;
+                outcomeText = "";
                 //not really necessary to set false here, but more readable and belt and supenders
             }
 
@@ -131,9 +134,9 @@
 
             if (gameOver) {
                 //some code here to ask for use indication they want to play again
-                //let's add a div that says "You Win" or You Lose! and "Click Here To Play Again"
+                //let's add a div th says "You Win" or You Lose! and "Click Here To Play Again"
                 console.log("gameOver = " + gameOver);
-                $("#win-lose").html(outcomeText);
+                //$("#win-lose").html(outcomeText)at;
                 initGame();
             }
         } //this closes the namedClickFunction

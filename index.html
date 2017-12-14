@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>CrystalsCollector Game</title>
+    <!-- Link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Link to my style sheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Link to the jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Link to Bootstrap-->
-    <!--Intentionally choosing Bootstrap over Meyerweb Reset-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Link to my javascript -->
+    <script src="assets/javascript/game.js"></script>
 </head>
 
 <body>
@@ -19,81 +22,98 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12">
-                <p>You will be given a random number at the start of the game.</p>
-                <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
-                <p>You win the game by matching your total score to the random number; you lose the game if your total score goes above the random number.</p>
-                <p>The value of each crystal is hidden from you until you click on it.</p>
-                <p>Each time when the game starts, the game will change the values of each crystal.</p>
-            </div>
-        </div>
-        <div class="row">
-            <!-- crystals Panel -->
-            <div class="col-lg-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Calculator</h3>
-                    </div>
-                    <div class="panel-body">
-                        <button id="button-1" class="btn btn-primary number" value="1">
-                            <h1>1</h1></button>
-                        <button id="button-2" class="btn btn-primary number" value="2">
-                            <h1>2</h1></button>
-                        <button id="button-3" class="btn btn-primary number" value="3">
-                            <h1>3</h1></button>
-                        <button id="button-plus" class="btn btn-danger operator" value="plus">
-                            <h1>+</h1></button>
-                        <br>
-                        <br>
-                        <button id="button-4" class="btn btn-primary number" value="4">
-                            <h1>4</h1></button>
-                        <button id="button-5" class="btn btn-primary number" value="5">
-                            <h1>5</h1></button>
-                        <button id="button-6" class="btn btn-primary number" value="6">
-                            <h1>6</h1></button>
-                        <button id="button-minus" class="btn btn-danger operator" value="minus">
-                            <h1>&minus;</h1></button>
-                        <br>
-                        <br>
-                        <button id="button-7" class="btn btn-primary number" value="7">
-                            <h1>7</h1></button>
-                        <button id="button-8" class="btn btn-primary number" value="8">
-                            <h1>8</h1></button>
-                        <button id="button-9" class="btn btn-primary number" value="9">
-                            <h1>9</h1></button>
-                        <button id="button-multiply" class="btn btn-danger operator" value="times">
-                            <h1>&times;</h1></button>
-                        <br>
-                        <br>
-                        <button id="button-0" class="btn btn-primary number" value="0">
-                            <h1>0</h1></button>
-                        <button id="button-divide" class="btn btn-danger operator" value="divide">
-                            <h1>&divide;</h1></button>
-                        <button id="button-power" class="btn btn-danger operator" value="power">
-                            <h1>^</h1></button>
-                        <button id="button-equal" class="btn btn-success equal" value="equals">
-                            <h1>=</h1></button>
-                        <br>
-                        <br>
-                        <button id="button-clear" class="btn btn-default clear" value="clear">
-                            <h1>clear</h1></button>
-                    </div>
+            <div class="col-lg-2">
+                <div>
+                    <h1>Instructions</h1>
+                    <p>You will be given a random number at the start of the game.</p>
+                    <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+                    <p>You win the game by matching your total score to the random number; you lose the game if your total score goes above the random number.</p>
+                    <p>The value of each crystal is hidden from you until you click on it.</p>
+                    <p>Each time when the game starts, the game will change the values of each crystal.</p>
                 </div>
             </div>
-            <!-- Result Panel -->
-            <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Result</h3>
-                    </div>
-                    <div class="panel-body">
-                        <h1 id="first-number"></h1>
-                        <h1 id="operator"></h1>
-                        <h1 id="second-number"></h1>
-                        <hr>
-                        <h1 id="result"></h1>
-                    </div>
+            <div class="col-lg-8">
+                <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+                <!-- Add empty div to hold crystal <img> elements. We will fill it dynamically using jQuery-->
+                <div id="crystals">
                 </div>
+                <h1>Your Running Total: <span id="running-total"></span></h1>
             </div>
+            <div class="col-lg-2">
+                <div>
+                    <h1>Wins</h1>
+                </div>
+                <div id="wins-count">0</div>
+
+                <div>
+                    <h1>Losses</h1>
+                </div>
+                <div id="losses-count">10</div>
+                
+                <div>
+                    <h1 id="win-lose">You Lose!</h1>
+                    <h3 id="play-again">Click Here To blah  Play Again</h3>
+                </div>
+                
+
+
+
+            </div>
+
         </div>
+        <!-- closes the 1st row in this container -->
     </div>
+    <!-- closes the container div -->
+    <!--Requirements-->
+    <!-- ===========================================
+Here's how the app works:
+
+There will be four crystals displayed as buttons on the page.
+
+The player will be shown a random number at the start of the game.
+
+When the player clicks on a crystal, it will add a specific amount of points to the player's total score.
+
+Your game will hide this amount until the player clicks a crystal.
+When they do click one, update the player's score counter.
+The player wins if their total score matches the random number from the beginning of the game.
+
+The player loses if their score goes above the random number.
+
+The game restarts whenever the player wins or loses.
+
+When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
+The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game.
+
+Option 1 Game design notes
+The random number shown at the start of the game should be between 19 - 120.
+
+Each crystal should have a random hidden value between 1 - 12.
+
+Psuedo Code
+0. initialize session state (multiple games can be played per session, wins and losses persist over session, not reset at gameOver)
+0.1. init wins and losses
+0.2. call initGame
+1. initialize game state (using initGame function)
+  1.1. Get random number for target, four crystals
+  1.2. Dynamically create 4 image elements for crystals
+  1.2.1. while creating img elements, style them and give them data attributes to hold their random number values
+  1.2.2. add the img elements to the page
+  1.3. initialize game state display (initGame calls updateDisplay) (displays number-to-guess, running-total, winCount and lossCount)
+
+2. Declare onclick function that fires for any crystal, but gets data value for specific clicked crystal
+  2.1. Add crystal data val to playerSum (must parseInt first)
+  2.2. Check to see if player won, check to see if player lost. Keep a "gameOver" state variable
+  2.3. If player won or lost, update count of wins and losses 
+    2.3.1. If player has won or lost, set gameOver true
+  2.4. Regardles of whether player has won or lost or not, update the display
+  2.5 Exit clock function. 
+    2.5.1, If gameOver false, keep playing
+    2.5.2. If gameOver true, require some user action to start new game (using initGame function)
+
+================================================ -->
+    <!-- JAVASCRIPT  -->
+    <!-- ========================================= -->
+</body>
+
+</html>
