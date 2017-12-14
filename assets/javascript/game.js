@@ -117,13 +117,13 @@
             //alert("New score: " + playerSum);
 
             if (playerSum === targetNumber) {
-                alert("You win!");
+                //alert("You win!");
                 outcomeText = "You Win!";
                 winCount++;
                 gameOver = true;
 
             } else if (playerSum >= targetNumber) {
-                alert("You lose!!");
+                //alert("You lose!!");
                 outcomeText = "You Lose!";
                 lossCount++;
                 gameOver = true;
