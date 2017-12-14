@@ -1,10 +1,38 @@
     $(document).ready(function() {
 
-        var targetNumber, playerSum, crysVals;
+        var gameOver, targetNumber, playerSum, crysVals, winCount, lossCount;
+
+        // global function declarations =============================
+
+        function initSession(){
+            winCount = 0;
+            lossCount = 0; 
+            initGame();  
+        }
+
+        function updateDisplay() {
+            //function to gather and perform all necessary display update commands
+            $("#number-to-guess").text(targetNumber); // jQuery selects element w/id number-to-guess, sets its text to targetNumber
+            $("#running-total").text(playerSum); // jQuery selects element w/id "#running-total", sets its text to playerSum
+            $("#wins-count").text(winCount);
+            $("#losses-count").text(lossCount);
+        }
 
         function initGame() {
+            gameOver = false
             playerSum = 0; //set global variable holding player's summed crystals values to 0
             targetNumber = (19 + Math.floor(Math.random() * 102)); //global variable, number to guess 19-120, inclusive
+            
+            //
+            // here we need some code to clear the innerHTML of div w/id="crystals"
+            // jQuery selector is going to be $("#crystals")
+            // let's use the .empty() method
+            $("#crystals").empty();
+            //
+            // later on we can consider refactoring so as...
+            // ...to initialize the persistent aspects of the <img> elements in initSession and...
+            // ...only initialize the random number data-value attributes in initGame
+            //
             crysVals = []; //create empty array to hold 4 random values for crystals
 
             for (var i = 0; i < 4; i++) { //loop to initialize 4 image elements with styling, img src, and data-attr to hold random number
@@ -30,16 +58,26 @@
                 $("#crystals").append(imageCrystal);
 
 
-            }
+            } //closes the for loop that creates the four <img> elements
 
-            $("#number-to-guess").text(targetNumber); //jQuery selects element w/id number-to-guess, sets its text to targetNumber
-
-
+            //initialize the DISPLAY of game state variables
+            updateDisplay();
+            //$("#number-to-guess").text(targetNumber); // jQuery selects element w/id number-to-guess, sets its text to targetNumber
+            //$("#running-total").text(playerSum); // jQuery selects element w/id "#running-total", sets its text to playerSum
 
             return;
+
+        } //closes the initGame function
+
+        function initSession(){
+            winCount = 0;
+            lossCount = 0; 
+            initGame();  
         }
 
-        initGame();
+        //end global function declarations =============================
+
+        initSession();
 
         // This click event will fire if any crystal is clicked
         // It will return the simple <img> element in "this", but not as a jQuery object
@@ -62,13 +100,30 @@
             playerSum += crystalValue;
 
             // All of the same game win-lose logic applies. So the rest remains unchanged.
-            alert("New score: " + playerSum);
+            //alert("New score: " + playerSum);
 
             if (playerSum === targetNumber) {
                 alert("You win!");
+                winCount++;
+                gameOver = true;
+
             } else if (playerSum >= targetNumber) {
                 alert("You lose!!");
+                lossCount++;
+                gameOver = true;
+            } else {
+                gameOver = false; 
+                //not really necessary to set false here, but more readable and belt and supenders
             }
+
+            //At this point the player's turn (one-click and it's responses) has ended
+            //Update display. Start a new game if necessary.
+            updateDisplay();
+            
+            if (gameOver) {
+                initGame();
+            }
+
 
         }); //closes the .on("click") function
 
