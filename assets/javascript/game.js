@@ -21,7 +21,8 @@
 
         function initGame() {
             gameOver = false;
-            outcomeText = '';
+            outcomeText = "";
+            $("#play-again").html("");
             playerSum = 0; //set global variable holding player's summed crystals values to 0
             targetNumber = (19 + Math.floor(Math.random() * 102)); //global variable, number to guess 19-120, inclusive
 
@@ -88,7 +89,11 @@
             initGame();
         }
 
-        
+        function namedClickHereFunction() {
+            initGame();
+        }
+
+
         function namedClickFunction() {
 
             console.log("recognized click");
@@ -137,7 +142,9 @@
                 //let's add a div th says "You Win" or You Lose! and "Click Here To Play Again"
                 console.log("gameOver = " + gameOver);
                 //$("#win-lose").html(outcomeText)at;
-                initGame();
+                //initGame();
+                $("#play-again").html("Click Here to Play Again");
+                $("#play-again").on("click", namedClickHereFunction);
             }
         } //this closes the namedClickFunction
 
