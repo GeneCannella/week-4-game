@@ -83,12 +83,6 @@
 
         } //closes the initGame function
 
-        function initSession() {
-            winCount = 0;
-            lossCount = 0;
-            initGame();
-        }
-
         function namedClickHereFunction() {
             initGame();
         }
