@@ -1,6 +1,15 @@
     $(document).ready(function() {
 
         var gameOver, outcomeText, targetNumber, playerSum, crysVals, winCount, lossCount, wrappedImages;
+        var imgArray = [
+        "assets/images/x-blue-200x200.jpg",
+        "assets/images/x-purple-200x200.jpg",
+        "assets/images/x-round-200x200.jpg",
+        "assets/images/x-star-200x200.jpg"
+        ];   
+
+        
+
 
         // global function declarations =============================
 
@@ -24,6 +33,7 @@
 
             gameOver = false;
             outcomeText = "";
+            var imgSrc = imgArray[Math.floor(Math.random()*4)];
             
             playerSum = 0; //set global variable holding player's summed crystals values to 0
             targetNumber = (19 + Math.floor(Math.random() * 102)); //global variable, number to guess 19-120, inclusive
@@ -56,7 +66,9 @@
                 // Each <img> element will be given a src link to the crystal image
                 //imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
                 //imageCrystal.attr("src", "../images/x-purple-200x200.jpg");
-                imageCrystal.attr("src", "assets/images/x-purple-200x200.jpg");  
+                //imageCrystal.attr("src", "assets/images/x-purple-200x200.jpg"); 
+                //var imgSrc = imgArray[Math.floor(Math.random()*4)];
+                imageCrystal.attr("src", imgSrc); 
 
                 //each element value will be between 1 and 12, inclusive
                 crysVals[i] = (1 + Math.floor(Math.random() * 12));

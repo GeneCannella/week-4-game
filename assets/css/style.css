@@ -1,11 +1,17 @@
-    /*
+/*
     .crystal-image {
         width: 100px;
         height: 100px;
     }
     */
 
-    .crystal-image {
-        max-width: 100%;
-        height: auto;
-    }
+.crystal-image {
+    max-width: 100%;
+    height: auto;
+}
+
+
+#losses-count,
+#wins-count {
+    font-size: 200%;
+}
