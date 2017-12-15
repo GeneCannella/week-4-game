@@ -20,9 +20,11 @@
         }
 
         function initGame() {
+            $("#play-again").html("");
+
             gameOver = false;
             outcomeText = "";
-            $("#play-again").html("");
+            
             playerSum = 0; //set global variable holding player's summed crystals values to 0
             targetNumber = (19 + Math.floor(Math.random() * 102)); //global variable, number to guess 19-120, inclusive
 
@@ -45,7 +47,7 @@
 
                 // For each <img> element, assign the class ".crystal-image".
                 // This is so that we will be able to style all the images together
-                imageCrystal.addClass("crystal-image");
+                imageCrystal.addClass("crystal-image col-lg-3");
 
                 // Each <img> element will be given a src link to the crystal image
                 imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");

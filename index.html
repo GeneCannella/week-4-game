@@ -20,8 +20,10 @@
         <h1 class="text-center">CrystalsCollector!</h1>
         <h3 class="text-center">Match the random number with the sum of your crystals.</h3>
     </div>
+    <!-- End Jumbotron -->
     <div class="container-fluid">
         <div class="row">
+            <!-- Instructions Panel -->
             <div class="col-lg-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Instructions</div>
@@ -34,48 +36,48 @@
                     </div>
                 </div>
             </div>
+            <!-- End of Instructions Panel -->
+            <!-- Crystals -->
             <div class="col-lg-8">
-                <h1>Number to Guess: <span id="number-to-guess"></span></h1>
-                <!-- Add empty div to hold crystal <img> elements. We will fill it dynamically using jQuery-->
-                <div id="crystals">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Click Crystals for Hidden Score</div>
+                    <div class="panel-body">
+                        <div class="row" id="bs-test">
+                            <!--<div class="col-lg-12">-->
+
+                                <!-- Add empty div to hold crystal <img> elements. We will fill it dynamically using jQuery-->
+                                <!--<div id="crystals"></div>-->
+                            <!--</div>-->
+                        </div>
+                        <h2>Number to Guess: <span id="number-to-guess"></span></h2>
+                        <h2>Your Running Total: <span id="running-total"></span></h2>
+                    </div>
                 </div>
-                <h1>Your Running Total: <span id="running-total"></span></h1>
             </div>
-
-
+            <!-- End of Crystals -->
             <div class="col-lg-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Scoreboard</div>
                     <div class="panel-body">
-
-
                         <div>
-                            <h1>Wins</h1>
+                            <h2>Wins</h2>
                         </div>
-
                         <div id="wins-count">0</div>
-
-
                         <div>
-                            <h1>Losses</h1>
+                            <h2>Losses</h2>
                         </div>
-
                         <div id="losses-count">10</div>
-
                         <div>
-                            <h1 id="win-lose">You Lose!</h1>
+                            <h2 id="win-lose">You Lose!</h2>
                             <h3 id="play-again"></h3>
                         </div>
-
-                        
                     </div>
                 </div>
-
-
             </div>
         </div>
         <!-- closes the 1st row in this container -->
     </div>
+    <img src="assets/images/x-purple-200x200.jpg">
     <!-- closes the container div -->
     <!--Requirements-->
     <!-- ===========================================

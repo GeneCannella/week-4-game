@@ -20,9 +20,11 @@
         }
 
         function initGame() {
+            $("#play-again").html("");
+
             gameOver = false;
             outcomeText = "";
-            $("#play-again").html("");
+            
             playerSum = 0; //set global variable holding player's summed crystals values to 0
             targetNumber = (19 + Math.floor(Math.random() * 102)); //global variable, number to guess 19-120, inclusive
 
@@ -40,6 +42,9 @@
 
             for (var i = 0; i < 4; i++) { //loop to initialize 4 image elements with styling, img src, and data-attr to hold random number
 
+                //for each crystal, wrap in a div of col-lg-3
+                var crystalDiv = $("<div class='col-lg-3'></div>")
+                
                 // for each crystal, create an <img> element, get a reference for it
                 var imageCrystal = $("<img>");
 
@@ -48,7 +53,9 @@
                 imageCrystal.addClass("crystal-image");
 
                 // Each <img> element will be given a src link to the crystal image
-                imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
+                //imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
+                //imageCrystal.attr("src", "../images/x-purple-200x200.jpg");
+                imageCrystal.attr("src", "assets/images/x-purple-200x200.jpg");  
 
                 //each element value will be between 1 and 12, inclusive
                 crysVals[i] = (1 + Math.floor(Math.random() * 12));
@@ -58,8 +65,9 @@
                 imageCrystal.attr("data-crystalvalue", crysVals[i]);
 
                 // Add each <img> element to the div with the id "#crystals"
-                $("#crystals").append(imageCrystal);
-
+                crystalDiv.append(imageCrystal);
+                //$("#bs-test").append(imageCrystal);
+                $("#bs-test").append(crystalDiv);
 
 
             } //closes the for loop that creates the four <img> elements
