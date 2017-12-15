@@ -70,7 +70,7 @@
 
             // This click event will fire if any crystal is clicked
             // It will return the simple <img> element in "this", but not as a jQuery object
-            wrappedImages.on("click", namedClickFunction); //closes the .on("click") function
+            wrappedImages.on("click", namedClickFunction);
             //$(".crystal-image").on("click", function() {
 
 
@@ -130,21 +130,17 @@
             } else {
                 gameOver = false;
                 outcomeText = "";
-                //not really necessary to set false here, but more readable and belt and supenders
+                //not really necessary to set false here, but more readable and belt and suspenders
             }
 
-            //At this point the player's turn (one-click and it's responses) has ended
-            //Update display. Start a new game if necessary.
-            updateDisplay();
+            //At this point the player's turn (one click and it's responses) has ended
+            updateDisplay(); //reflect changes in game state on page
 
             if (gameOver) {
-                //some code here to ask for use indication they want to play again
-                //let's add a div th says "You Win" or You Lose! and "Click Here To Play Again"
-                console.log("gameOver = " + gameOver);
-                //$("#win-lose").html(outcomeText)at;
-                //initGame();
-                $("#play-again").html("Click Here to Play Again");
-                $("#play-again").on("click", namedClickHereFunction);
+
+                $(".crystal-image").off("click"); //disable click handler until next game begins
+                $("#play-again").html("Click Here to Play Again"); // Display message to ask user if they want new game
+                $("#play-again").on("click", namedClickHereFunction); // Bind a click handler to the play-again message
             }
         } //this closes the namedClickFunction
 
