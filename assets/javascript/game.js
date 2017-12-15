@@ -32,7 +32,8 @@
             // here we need some code to clear the innerHTML of div w/id="crystals"
             // jQuery selector is going to be $("#crystals")
             // let's use the .empty() method - apparently it's faster than .html("")
-            $("#crystals").empty();
+            //$("#crystals").empty();
+            $("#bs-test").empty();
             //
             // later on we can consider refactoring so as...
             // ...to initialize the persistent aspects of the <img> elements in initSession and...
