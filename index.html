@@ -23,13 +23,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2">
-                <div>
-                    <h1>Instructions</h1>
-                    <p>You will be given a random number at the start of the game.</p>
-                    <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
-                    <p>You win the game by matching your total score to the random number; you lose the game if your total score goes above the random number.</p>
-                    <p>The value of each crystal is hidden from you until you click on it.</p>
-                    <p>Each time when the game starts, the game will change the values of each crystal.</p>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Instructions</div>
+                    <div class="panel-body">
+                        <p>You will be given a random number at the start of the game.</p>
+                        <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+                        <p>You win the game by matching your total score to the random number; you lose the game if your total score goes above the random number.</p>
+                        <p>The value of each crystal is hidden from you until you click on it.</p>
+                        <p>Each time when the game starts, the game will change the values of each crystal.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-8">
@@ -39,27 +41,38 @@
                 </div>
                 <h1>Your Running Total: <span id="running-total"></span></h1>
             </div>
+
+
             <div class="col-lg-2">
-                <div>
-                    <h1>Wins</h1>
-                </div>
-                <div id="wins-count">0</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Scoreboard</div>
+                    <div class="panel-body">
 
-                <div>
-                    <h1>Losses</h1>
-                </div>
-                <div id="losses-count">10</div>
-                
-                <div>
-                    <h1 id="win-lose">You Lose!</h1>
-                    <h3 id="play-again"></h3>
-                </div>
-                
 
+                        <div>
+                            <h1>Wins</h1>
+                        </div>
+
+                        <div id="wins-count">0</div>
+
+
+                        <div>
+                            <h1>Losses</h1>
+                        </div>
+
+                        <div id="losses-count">10</div>
+
+                        <div>
+                            <h1 id="win-lose">You Lose!</h1>
+                            <h3 id="play-again"></h3>
+                        </div>
+
+                        
+                    </div>
+                </div>
 
 
             </div>
-
         </div>
         <!-- closes the 1st row in this container -->
     </div>

@@ -1,6 +1,6 @@
     $(document).ready(function() {
 
-        var gameOver, targetNumber, playerSum, crysVals, winCount, lossCount, wrappedImages;
+        var gameOver, outcomeText, targetNumber, playerSum, crysVals, winCount, lossCount, wrappedImages;
 
         // global function declarations =============================
 
@@ -16,10 +16,13 @@
             $("#running-total").text(playerSum); // jQuery selects element w/id "#running-total", sets its text to playerSum
             $("#wins-count").text(winCount);
             $("#losses-count").text(lossCount);
+            $("#win-lose").html(outcomeText);
         }
 
         function initGame() {
             gameOver = false;
+            outcomeText = "";
+            $("#play-again").html("");
             playerSum = 0; //set global variable holding player's summed crystals values to 0
             targetNumber = (19 + Math.floor(Math.random() * 102)); //global variable, number to guess 19-120, inclusive
 
@@ -65,6 +68,11 @@
             wrappedImages = $(".crystal-image");
             console.log("wrappedImages = " + wrappedImages);
 
+            // This click event will fire if any crystal is clicked
+            // It will return the simple <img> element in "this", but not as a jQuery object
+            wrappedImages.on("click", namedClickFunction);
+            //$(".crystal-image").on("click", function() {
+
 
             //initialize the DISPLAY of game state variables
             updateDisplay();
@@ -75,20 +83,13 @@
 
         } //closes the initGame function
 
-        function initSession() {
-            winCount = 0;
-            lossCount = 0;
+        function namedClickHereFunction() {
             initGame();
         }
 
-        //end global function declarations =============================
 
-        initSession();
+        function namedClickFunction() {
 
-        // This click event will fire if any crystal is clicked
-        // It will return the simple <img> element in "this", but not as a jQuery object
-        wrappedImages.on("click", function() {
-            //$(".crystal-image").on("click", function() {
             console.log("recognized click");
             // Determining the crystal's value requires us to extract the value from the data attribute.
             // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
@@ -110,32 +111,43 @@
             //alert("New score: " + playerSum);
 
             if (playerSum === targetNumber) {
-                alert("You win!");
+                //alert("You win!");
+                outcomeText = "You Win!";
                 winCount++;
                 gameOver = true;
 
             } else if (playerSum >= targetNumber) {
-                alert("You lose!!");
+                //alert("You lose!!");
+                outcomeText = "You Lose!";
                 lossCount++;
                 gameOver = true;
             } else {
                 gameOver = false;
-                //not really necessary to set false here, but more readable and belt and supenders
+                outcomeText = "";
+                //not really necessary to set false here, but more readable and belt and suspenders
             }
 
-            //At this point the player's turn (one-click and it's responses) has ended
-            //Update display. Start a new game if necessary.
-            updateDisplay();
+            //At this point the player's turn (one click and it's responses) has ended
+            updateDisplay(); //reflect changes in game state on page
 
             if (gameOver) {
-                //some code here to ask for use indication they want to play again
-                //let's add a div that says "You Win" or You Lose! and "Click Here To Play Again"
-                console.log("gameOver = " + gameOver);
-                initGame();
+
+                $(".crystal-image").off("click"); //disable click handler until next game begins
+                $("#play-again").html("Click Here to Play Again"); // Display message to ask user if they want new game
+                $("#play-again").on("click", namedClickHereFunction); // Bind a click handler to the play-again message
             }
+        } //this closes the namedClickFunction
 
 
-        }); //closes the .on("click") function
+        //end global function declarations =============================
+
+        initSession();
+
+
+
+
+
+
 
 
     }); //closes the document ready function
