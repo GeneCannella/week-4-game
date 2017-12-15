@@ -154,8 +154,12 @@
             if (gameOver) {
 
                 $(".crystal-image").off("click"); //disable click handler until next game begins
-                $("#play-again").html("Click Here to Play Again"); // Display message to ask user if they want new game
+                
+                //$("#play-again").html("Click Here to Play Again"); // Display message to ask user if they want new game
+                $("#play-again").html("<button type='button' class='btn btn-info btn-lg btn-block'>Click to Play Again</button>");
+
                 $("#play-again").on("click", namedClickHereFunction); // Bind a click handler to the play-again message
+                
             }
         } //this closes the namedClickFunction
 
