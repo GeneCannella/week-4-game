@@ -159,8 +159,9 @@
                 $("#play-again").html("<button type='button' class='btn btn-info btn-lg btn-block'>Click to Play Again</button>");
 
                 $("#play-again").on("click", namedClickHereFunction); // Bind a click handler to the play-again message
-                
             }
+
+        return;    
         } //this closes the namedClickFunction
 
 
